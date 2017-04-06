@@ -12,6 +12,15 @@ var Enemy = function(x,y) {
     allEnemies.push(this);
 };
 
+Enemy.prototype.checkCollisions = function(player){
+  if(player.x < this.x + 75 &&
+     player.x + 65 > this.x &&
+     player.y < this.y +50 &&
+     player.y + 70 > this.y){
+       player.reset();
+     }
+};
+
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
@@ -42,38 +51,40 @@ var Player = function() {
 Player.prototype.update = function(){
   if(this.x < 0){
     this.x = 0;
-  } else if (this.x > 500){
-    this.x = 500;
+  } else if (this.x > 420){
+    this.x = 420;
   } else if (this.y < 0){
     this.y = 0;
-  }  else if (this.y > 600){
-    this.y = 600;
+  }  else if (this.y > 435){
+    this.y = 435;
   }
 };
 
 Player.prototype.handleInput = function(key) {
     switch (key) {
-    case left:
+    case "left":
       this.x = this.x - 30;
     break;
 
-    case right: // Up
+    case "right": // Up
       this.x = this.x + 30;
     break;
 
-    case up:
+    case "up":
       this.y = this.y - 30;
     break;
 
-    case down:
+    case "down":
       this.y = this.y + 30;
     break;
+  }
 };
 
 //draws player in the game
 Player.prototype.render = function() {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
+
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 var allEnemies = [];
@@ -97,5 +108,5 @@ document.addEventListener('keyup', function(e) {
         40: 'down'
     };
 
-    player.handleInput(allowedKeys[e.keyCode]);
+  player.handleInput(allowedKeys[e.keyCode]);
 });
