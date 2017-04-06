@@ -8,15 +8,17 @@ var Enemy = function(x,y) {
     this.sprite = 'images/enemy-bug.png';
     this.x = x;
     this.y = y;
+    this.width = 52;
+    this.height = 50;
     this.speed = Math.floor(Math.random() * 200);
     allEnemies.push(this);
 };
 
 Enemy.prototype.checkCollisions = function(player){
-     if(player.x < enemy.x + enemy.width &&
-        player.x + player.width > enemy.x &&
-        player.y < enemy.y + enemy.height &&
-        player.height + player.y > enemy.y){
+     if(player.x < this.x + this.width &&
+        player.x + player.width > this.x &&
+        player.y < this.y + this.height &&
+        player.height + player.y > this.y){
           console.log("collision!!");
           player.x = 215;
           player.y = 400;
@@ -48,6 +50,8 @@ var Player = function() {
   this.sprite = 'images/char-princess-girl.png';
   this.x = 215;
   this.y = 400;
+  this.width = 52;
+  this.height = 50;
 };
 
 //sets limits for player to remain on screen
