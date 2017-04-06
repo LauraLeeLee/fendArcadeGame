@@ -6,9 +6,10 @@ var Enemy = function(x,y) {
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
-    this.x = 5;
-    this.y = 225;
-    this.speed = 100;
+    this.x = x;
+    this.y = y;
+    this.speed = Math.floor(Math.random() * 200);
+    allEnemies.push(this);
 };
 
 // Update the enemy's position, required method for game
@@ -33,38 +34,56 @@ Enemy.prototype.render = function() {
 // a handleInput() method.
 var Player = function() {
   this.sprite = 'images/char-princess-girl.png';
-  this.x = 300;
-  this.y = 300;
+  this.x = 215;
+  this.y = 400;
 };
 
-Player.prototype.handleInput = function(direction) {
-    if (direction === 'up') {
-        this.x += 100;
-    }
-    if (direction === 'down') {
-        this.x -= 100;
-    }
-    if (direction === 'right') {
-        this.y += 100 ;
-    }
-    if (direction === 'left') {
-        this.y -= 100;
-    }
+//sets limits for player to remain on screen
+Player.prototype.update = function(){
+  if(this.x < 0){
+    this.x = 0;
+  } else if (this.x > 500){
+    this.x = 500;
+  } else if (this.y < 0){
+    this.y = 0;
+  }  else if (this.y > 600){
+    this.y = 600;
+  }
 };
 
-Player.prototype.update = function(dt){
+Player.prototype.handleInput = function(key) {
+    switch (key) {
+    case left:
+      this.x = this.x - 30;
+    break;
 
+    case right: // Up
+      this.x = this.x + 30;
+    break;
+
+    case up:
+      this.y = this.y - 30;
+    break;
+
+    case down:
+      this.y = this.y + 30;
+    break;
 };
 
+//draws player in the game
 Player.prototype.render = function() {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
-// Place the player object in a variable called player
-var allEnemies = [new Enemy()];
+var allEnemies = [];
 allEnemies.push(new Enemy(10, 50));
+allEnemies.push(new Enemy(5, 180));
+allEnemies.push(new Enemy(20, 100));
+//allEnemies.push(new Enemy(30, 150));
+allEnemies.push(new Enemy(50, 230));
 
+// Place the player object in a variable called player
 var player = new Player();
 
 
