@@ -23,6 +23,7 @@ Enemy.prototype.checkCollisions = function(){
           player.x = 215;
           player.y = 400;
         }
+        return "pinocchio";
 };
 
 // Update the enemy's position, required method for game
@@ -68,7 +69,7 @@ Player.prototype.update = function(){
 };
 
 Player.prototype.handleInput = function(key) {
-    switch (key) {
+  switch (key) {
     case "left":
       this.x = this.x - 30;
     break;
@@ -90,6 +91,16 @@ Player.prototype.handleInput = function(key) {
 //draws player in the game
 Player.prototype.render = function() {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+};
+
+//message to appear when player crosses to water
+Player.prototype.win = function() {
+  if( this.y < 20) {
+    ctx.font = "bold 20px sans-serif";
+    ctx.fillStyle = "#fef65b";
+    ctx.fillText("You beat the bugs!!",200,100);
+    console.log("you win!");
+  };
 };
 
 // Now instantiate your objects.
