@@ -14,7 +14,7 @@ var Enemy = function(x,y) {
     allEnemies.push(this);
 };
 
-Enemy.prototype.checkCollisions = function(player){
+Enemy.prototype.checkCollisions = function(){
      if(player.x < this.x + this.width &&
         player.x + player.width > this.x &&
         player.y < this.y + this.height &&
@@ -33,7 +33,7 @@ Enemy.prototype.update = function(dt) {
     // all computers.
     this.x += this.speed * dt;
     if(this.x > 500) {
-     this.x = -50;
+     this.x = -150;
     }
     this.checkCollisions();
 };
@@ -96,8 +96,8 @@ Player.prototype.render = function() {
 // Place all enemy objects in an array called allEnemies
 var allEnemies = [];
 allEnemies.push(new Enemy(10, 50));
-allEnemies.push(new Enemy(5, 180));
-allEnemies.push(new Enemy(20, 100));
+//allEnemies.push(new Enemy(5, 180));
+allEnemies.push(new Enemy(20, 150));
 //allEnemies.push(new Enemy(30, 150));
 allEnemies.push(new Enemy(50, 230));
 
