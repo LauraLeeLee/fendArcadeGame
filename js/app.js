@@ -13,12 +13,14 @@ var Enemy = function(x,y) {
 };
 
 Enemy.prototype.checkCollisions = function(player){
-  if(player.x < this.x + 75 &&
-     player.x + 65 > this.x &&
-     player.y < this.y +50 &&
-     player.y + 70 > this.y){
-       player.reset();
-     }
+     if(player.x < enemy.x + enemy.width &&
+        player.x + player.width > enemy.x &&
+        player.y < enemy.y + enemy.height &&
+        player.height + player.y > enemy.y){
+          console.log("collision!!");
+          player.x = 215;
+          player.y = 400;
+        }
 };
 
 // Update the enemy's position, required method for game
@@ -31,6 +33,7 @@ Enemy.prototype.update = function(dt) {
     if(this.x > 500) {
      this.x = -50;
     }
+    this.checkCollisions();
 };
 
 // Draw the enemy on the screen, required method for game
