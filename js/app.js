@@ -55,8 +55,8 @@ var Player = function() {
   this.height = 50;
 };
 
-//sets limits for player to remain on screen
 Player.prototype.update = function(){
+  //sets limits for player to remain on screen
   if(this.x < 0){
     this.x = 0;
   } else if (this.x > 420){
@@ -66,6 +66,7 @@ Player.prototype.update = function(){
   }  else if (this.y > 435){
     this.y = 435;
   }
+
 };
 
 Player.prototype.handleInput = function(key) {
