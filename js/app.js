@@ -92,6 +92,9 @@ Player.prototype.handleInput = function(key) {
 //draws player in the game
 Player.prototype.render = function() {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+
+    player.win();
+
 };
 
 //message to appear when player crosses to water
@@ -99,7 +102,7 @@ Player.prototype.win = function() {
   if( this.y < 20) {
     ctx.font = "bold 20px sans-serif";
     ctx.fillStyle = "#fef65b";
-    ctx.fillText("You beat the bugs!!",200,100);
+    ctx.fillText("You beat the bugs!!",150,100);
     console.log("you win!");
   };
 };
