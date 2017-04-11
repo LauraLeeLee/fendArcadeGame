@@ -14,7 +14,7 @@ var Enemy = function(x,y) {
     allEnemies.push(this);
 };
 
-//sets collision with player 
+//sets collision with player
 Enemy.prototype.checkCollisions = function(){
      if(player.x < this.x + this.width &&
         player.x + player.width > this.x &&
@@ -67,6 +67,24 @@ Player.prototype.update = function(){
   }  else if (this.y > 435){
     this.y = 435;
   }
+
+  //sets value of score and lives
+  var score = "Score: %data%";
+  var lives = "Lives: %data%";
+
+  //update %data% with current values
+  var updateScore = score.replace("%data%", this.score);
+  var updateLives = lives.replace("%data%", this.lives);
+  if(this.win()){
+    this.score+=10;
+  }
+  if( this.score >= 200) {
+    ctx.font = "bold 40px sans-serif";
+    ctx.fillStyle = "#fef65b";
+    ctx.fillText("You beat the bugs!!",65,100);
+    console.log("you win!");
+  };
+
 };
 
 //sets the direction and distance for player movement
@@ -98,11 +116,9 @@ Player.prototype.render = function() {
 
 //message to appear when player crosses to water
 Player.prototype.win = function() {
-  if( this.y < 20) {
-    ctx.font = "bold 40px sans-serif";
-    ctx.fillStyle = "#fef65b";
-    ctx.fillText("You beat the bugs!!",80,100);
-    console.log("you win!");
+  if(this.y < 10) {
+    this.x = 215;
+    this.y = 400;
   };
 };
 
