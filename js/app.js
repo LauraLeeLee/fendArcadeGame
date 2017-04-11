@@ -54,6 +54,7 @@ var Player = function() {
   this.y = 400;
   this.width = 52;
   this.height = 50;
+  this.score = 0;
 };
 
 Player.prototype.update = function(){
@@ -84,6 +85,9 @@ Player.prototype.update = function(){
     ctx.fillText("You beat the bugs!!",65,100);
     console.log("you win!");
   };
+
+  document.getElementById("score").textContext
+
 
 };
 
