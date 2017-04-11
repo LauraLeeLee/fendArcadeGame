@@ -23,7 +23,13 @@ Enemy.prototype.checkCollisions = function(){
           console.log("collision!!");
           player.x = 215;
           player.y = 400;
+          this.lives-=1;
         }
+        if (this.lives <= 0) {
+        alert("The bugs beat you! Click OK to play again");
+        this.lives = 3;
+        this.score = 0;
+      };
         return "pinocchio";
 };
 
