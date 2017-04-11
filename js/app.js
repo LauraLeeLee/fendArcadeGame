@@ -14,6 +14,7 @@ var Enemy = function(x,y) {
     allEnemies.push(this);
 };
 
+//sets collision with player 
 Enemy.prototype.checkCollisions = function(){
      if(player.x < this.x + this.width &&
         player.x + player.width > this.x &&
@@ -66,9 +67,9 @@ Player.prototype.update = function(){
   }  else if (this.y > 435){
     this.y = 435;
   }
-
 };
 
+//sets the direction and distance for player movement
 Player.prototype.handleInput = function(key) {
   switch (key) {
     case "left":
@@ -92,17 +93,15 @@ Player.prototype.handleInput = function(key) {
 //draws player in the game
 Player.prototype.render = function() {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-
-    player.win();
-
+    this.win();
 };
 
 //message to appear when player crosses to water
 Player.prototype.win = function() {
   if( this.y < 20) {
-    ctx.font = "bold 20px sans-serif";
+    ctx.font = "bold 40px sans-serif";
     ctx.fillStyle = "#fef65b";
-    ctx.fillText("You beat the bugs!!",150,100);
+    ctx.fillText("You beat the bugs!!",80,100);
     console.log("you win!");
   };
 };
