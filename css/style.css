@@ -1,10 +1,17 @@
 body {
-    text-align: center;
-    background-color: #cc0000;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  background-color: #cc0000;
 }
 
+header {
+  margin-top: 50px;
+  margin-bottom: -30px;
+}
 h2 {
   font: 30px arial san-serif;
   color: #ffff00;
-  margin-bottom: -25px;
+  margin-left: 40px;
+  display: inline;
 }
