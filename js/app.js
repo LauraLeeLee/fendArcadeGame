@@ -78,23 +78,25 @@ Player.prototype.update = function(){
   //sets value of score and lives
   var score = "Score: %data%";
   var lives = "Lives: %data%";
-
   //update %data% with current values
-  var updateScore = score.replace("%data%", this.score);
+  //var updateScore =score.replace("%data%", this.score);
+  var scoreElem = document.getElementById("score");
+  scoreElem.textContent = score.replace("%data%", this.score);
+
   var updateLives = lives.replace("%data%", this.lives);
+
+  //score 10 points for making it to water
   if(this.win()){
-    this.score+=10;
-  }
+    this.score += 10;
+    console.log("10 points!");
+  };
+  //win game when reach 200 points
   if( this.score >= 200) {
     ctx.font = "bold 40px sans-serif";
     ctx.fillStyle = "#fef65b";
     ctx.fillText("You beat the bugs!!",65,100);
     console.log("you win!");
   };
-
-  document.getElementById("score").textContext
-
-
 };
 
 //sets the direction and distance for player movement
