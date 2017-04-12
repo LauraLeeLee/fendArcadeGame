@@ -86,10 +86,11 @@ Player.prototype.update = function(){
   var updateLives = lives.replace("%data%", this.lives);
 
   //score 10 points for making it to water
-  if(this.win()){
-    this.score += 10;
+  if(this.win()===true){
+    this.score += 200;
     console.log("10 points!");
   };
+
   //win game when reach 200 points
   if( this.score >= 200) {
     ctx.font = "bold 40px sans-serif";
@@ -131,6 +132,7 @@ Player.prototype.win = function() {
   if(this.y < 10) {
     this.x = 215;
     this.y = 400;
+    return true;
   };
 };
 
