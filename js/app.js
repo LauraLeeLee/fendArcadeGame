@@ -12,6 +12,7 @@ var Enemy = function(x,y) {
     this.height = 50;
     this.speed = Math.floor(Math.random() * 200);
     allEnemies.push(this);
+    this.lives=3;
 };
 
 //sets collision with player
@@ -38,6 +39,10 @@ Enemy.prototype.update = function(dt) {
      this.x = -150;
     }
     this.checkCollisions();
+    var lives = "Lives: %data%";
+    var updateLives = lives.replace("%data%", this.lives);
+    var livesElem = document.getElementById("lives");
+    livesElem.textContent = lives.replace("%data%", this.lives);
 };
 
 // Draw the enemy on the screen, required method for game
@@ -58,7 +63,7 @@ var Player = function() {
   this.width = 52;
   this.height = 50;
   this.score = 0;
-  this.lives=3;
+
 };
 
 Player.prototype.update = function(){
@@ -81,10 +86,7 @@ Player.prototype.update = function(){
   var scoreElem = document.getElementById("score");
   scoreElem.textContent = score.replace("%data%", this.score);
 
-  var lives = "Lives: %data%";
-  var updateLives = lives.replace("%data%", this.lives);
-  var livesElem = document.getElementById("lives");
-  livesElem.textContent = lives.replace("%data%", this.lives);
+
 
   //score 10 points for making it to water
   if(this.win()===true){
