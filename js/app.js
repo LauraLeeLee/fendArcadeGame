@@ -25,12 +25,6 @@ Enemy.prototype.checkCollisions = function(){
           player.y = 400;
           this.lives-=1;
         }
-        if (this.lives <= 0) {
-        alert("The bugs beat you! Click OK to play again");
-        this.lives = 3;
-        this.score = 0;
-      };
-        return "pinocchio";
 };
 
 // Update the enemy's position, required method for game
@@ -49,6 +43,9 @@ Enemy.prototype.update = function(dt) {
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    if (this.lives <= 0) {
+    alert("The bugs beat you! Click OK to play again");
+    }
 };
 
 // Now write your own player class
@@ -61,6 +58,7 @@ var Player = function() {
   this.width = 52;
   this.height = 50;
   this.score = 0;
+  this.lives=3;
 };
 
 Player.prototype.update = function(){
@@ -77,26 +75,21 @@ Player.prototype.update = function(){
 
   //sets value of score and lives
   var score = "Score: %data%";
-  var lives = "Lives: %data%";
+
   //update %data% with current values
   //var updateScore =score.replace("%data%", this.score);
   var scoreElem = document.getElementById("score");
   scoreElem.textContent = score.replace("%data%", this.score);
 
+  var lives = "Lives: %data%";
   var updateLives = lives.replace("%data%", this.lives);
+  var livesElem = document.getElementById("lives");
+  livesElem.textContent = lives.replace("%data%", this.lives);
 
   //score 10 points for making it to water
   if(this.win()===true){
-    this.score += 200;
+    this.score += 10;
     console.log("10 points!");
-  };
-
-  //win game when reach 200 points
-  if( this.score >= 200) {
-    ctx.font = "bold 40px sans-serif";
-    ctx.fillStyle = "#fef65b";
-    ctx.fillText("You beat the bugs!!",65,100);
-    console.log("you win!");
   };
 };
 
@@ -121,10 +114,17 @@ Player.prototype.handleInput = function(key) {
   }
 };
 
-//draws player in the game
+//draws player and anything associated with player in the game
 Player.prototype.render = function() {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     this.win();
+    //win game when reach 200 points
+    if( this.score >= 200) {
+      ctx.font = "bold 40px sans-serif";
+      ctx.fillStyle = "#fef65b";
+      ctx.fillText("You beat the bugs!!",65,100);
+      console.log("you win!");
+    };
 };
 
 //message to appear when player crosses to water
