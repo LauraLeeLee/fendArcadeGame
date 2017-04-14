@@ -12,7 +12,6 @@ var Enemy = function(x,y) {
     this.height = 50;
     this.speed = Math.floor(Math.random() * 200);
     allEnemies.push(this);
-    this.lives=3;
 };
 
 //sets collision with player
@@ -24,7 +23,7 @@ Enemy.prototype.checkCollisions = function(){
           console.log("collision!!");
           player.x = 215;
           player.y = 400;
-          this.lives-=1;
+          player.lives-=1;
         }
 };
 
@@ -39,18 +38,12 @@ Enemy.prototype.update = function(dt) {
      this.x = -150;
     }
     this.checkCollisions();
-    var lives = "Lives: %data%";
-    var updateLives = lives.replace("%data%", this.lives);
-    var livesElem = document.getElementById("lives");
-    livesElem.textContent = lives.replace("%data%", this.lives);
+
 };
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-    if (this.lives <= 0) {
-    alert("The bugs beat you! Click OK to play again");
-    }
 };
 
 // Now write your own player class
@@ -63,7 +56,7 @@ var Player = function() {
   this.width = 52;
   this.height = 50;
   this.score = 0;
-
+  this.lives = 3;
 };
 
 Player.prototype.update = function(){
@@ -86,6 +79,10 @@ Player.prototype.update = function(){
   var scoreElem = document.getElementById("score");
   scoreElem.textContent = score.replace("%data%", this.score);
 
+  var lives = "Lives: %data%";
+  var updateLives = lives.replace("%data%", this.lives);
+  var livesElem = document.getElementById("lives");
+  livesElem.textContent = lives.replace("%data%", this.lives);
 
 
   //score 10 points for making it to water
@@ -127,6 +124,10 @@ Player.prototype.render = function() {
       ctx.fillText("You beat the bugs!!",65,100);
       console.log("you win!");
     };
+    if (player.lives <= 0) {
+    alert("The bugs beat you! Click OK to play again");
+    this.lives = 3;
+  }
 };
 
 //message to appear when player crosses to water
