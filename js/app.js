@@ -143,13 +143,27 @@ Player.prototype.win = function() {
 // Place all enemy objects in an array called allEnemies
 var allEnemies = [];
 allEnemies.push(new Enemy(10, 50));
-//allEnemies.push(new Enemy(5, 180));
 allEnemies.push(new Enemy(20, 150));
-//allEnemies.push(new Enemy(30, 150));
 allEnemies.push(new Enemy(50, 230));
+allEnemies.push(new Enemy(30, 300));
 
 // Place the player object in a variable called player
 var player = new Player();
+
+//creates Gem class
+var Gem = function (x,y) {
+  var gemSprite = ["images/gem-orange.png","images/gem-blue.png","images/star.png"];
+    this.sprite = gemSprite;
+    var randomGem = this.sprite[Math.floor(Math.random() * gemSprite.length)];
+    this.x =  Math.round(Math.random() * 560) + 1;
+    this.y = Math.round(Math.random() * 360) + 70;
+};
+
+//draws gem to baord
+Gem.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.sprite),this.x,this.y,80,150)
+};
+
 
 
 // This listens for key presses and sends the keys to your
