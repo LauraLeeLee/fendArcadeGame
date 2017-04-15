@@ -143,14 +143,18 @@ Player.prototype.win = function() {
 var Gem = function (x,y) {
   var gemSprite = ["images/gem-orange.png","images/gem-blue.png","images/star.png"];
     this.sprite = gemSprite;
-    var randomGem = this.sprite[Math.floor(Math.random() * gemSprite.length)];
-    this.x =  Math.floor(Math.random() * 500) + 1;
-    this.y = Math.floor(Math.random() * 550) + 50;
+
 };
 
 //draws gem to baord
 Gem.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite),this.x,this.y,80,150)
+};
+
+Gem.prototype.update = function() {
+  var randomGem = this.sprite[Math.floor(Math.random() * gemSprite.length)];
+  this.x =  Math.floor(Math.random() * 500) + 1;
+  this.y = Math.floor(Math.random() * 550) + 50;
 };
 
 // Now instantiate your objects.
@@ -166,9 +170,6 @@ var player = new Player();
 
 var allGems = [];
 allGems.push(new Gem());
-
-
-
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
