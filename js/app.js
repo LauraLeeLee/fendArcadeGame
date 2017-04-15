@@ -139,6 +139,20 @@ Player.prototype.win = function() {
   };
 };
 
+//creates Gem class
+var Gem = function (x,y) {
+  var gemSprite = ["images/gem-orange.png","images/gem-blue.png","images/star.png"];
+    this.sprite = gemSprite;
+    var randomGem = this.sprite[Math.floor(Math.random() * gemSprite.length)];
+    this.x =  Math.floor(Math.random() * 500) + 1;
+    this.y = Math.floor(Math.random() * 550) + 50;
+};
+
+//draws gem to baord
+Gem.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.sprite),this.x,this.y,80,150)
+};
+
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 var allEnemies = [];
@@ -150,19 +164,9 @@ allEnemies.push(new Enemy(30, 300));
 // Place the player object in a variable called player
 var player = new Player();
 
-//creates Gem class
-var Gem = function (x,y) {
-  var gemSprite = ["images/gem-orange.png","images/gem-blue.png","images/star.png"];
-    this.sprite = gemSprite;
-    var randomGem = this.sprite[Math.floor(Math.random() * gemSprite.length)];
-    this.x =  Math.round(Math.random() * 560) + 1;
-    this.y = Math.round(Math.random() * 360) + 70;
-};
+var allGems = [];
+allGems.push(new Gem());
 
-//draws gem to baord
-Gem.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite),this.x,this.y,80,150)
-};
 
 
 
