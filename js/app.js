@@ -143,18 +143,21 @@ Player.prototype.win = function() {
 var Gem = function (x,y) {
   var gemSprite = ["images/gem-orange.png","images/gem-blue.png","images/star.png"];
     this.sprite = gemSprite;
-
+    this.x =  Math.floor(Math.random() * 500) + 1;
+    this.y = Math.floor(Math.random() * 550) + 50;
+    this.width = 52;
+    this.height = 50;
+    allGems.push(this);
 };
 
-//draws gem to baord
+//draws gem to board
 Gem.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite),this.x,this.y,80,150)
 };
 
 Gem.prototype.update = function() {
+  //chooses randome sprite image
   var randomGem = this.sprite[Math.floor(Math.random() * gemSprite.length)];
-  this.x =  Math.floor(Math.random() * 500) + 1;
-  this.y = Math.floor(Math.random() * 550) + 50;
 };
 
 // Now instantiate your objects.
@@ -168,7 +171,9 @@ allEnemies.push(new Enemy(30, 300));
 // Place the player object in a variable called player
 var player = new Player();
 
+//Place all gems created in an array called allGems
 var allGems = [];
+allGems.push(new Gem());
 allGems.push(new Gem());
 
 // This listens for key presses and sends the keys to your
@@ -180,6 +185,5 @@ document.addEventListener('keyup', function(e) {
         39: 'right',
         40: 'down'
     };
-
   player.handleInput(allowedKeys[e.keyCode]);
 });
