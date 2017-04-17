@@ -160,12 +160,6 @@ Gem.prototype.update = function() {
   var gemSprite = ["images/gem-orange.png","images/gem-blue.png","images/star.png"];
   var randomGem = this.sprite[Math.floor(Math.random() * gemSprite.length)];
   console.log("random gem");
-
-  var gemPosition = function getRandomInt(min, max) {
-    min = Math.ceil(50);
-    max = Math.floor(250);
-    return Math.floor(Math.random() * (250 - 50)) + 50;
-  };
 };
 
 // Now instantiate your objects.
