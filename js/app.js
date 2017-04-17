@@ -141,23 +141,30 @@ Player.prototype.win = function() {
 
 //creates Gem class
 var Gem = function (x,y) {
-  var gemSprite = ["images/gem-orange.png","images/gem-blue.png","images/star.png"];
-    this.sprite = gemSprite;
+    this.sprite = "images/gem-blue.png";
     this.x =  Math.floor(Math.random() * 500) + 1;
     this.y = Math.floor(Math.random() * 550) + 50;
-    this.width = 52;
-    this.height = 50;
+    this.width = 10;
+    this.height = 20;
     allGems.push(this);
 };
 
 //draws gem to board
 Gem.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite),this.x,this.y,80,150)
+    ctx.drawImage(Resources.get(this.sprite),this.x,this.y);
 };
 
 Gem.prototype.update = function() {
-  //chooses randome sprite image
+  //chooses random sprite image
+  var gemSprite = ["images/gem-orange.png","images/gem-blue.png","images/star.png"];
   var randomGem = this.sprite[Math.floor(Math.random() * gemSprite.length)];
+  console.log("random gem");
+
+  var gemPosition = function getRandomInt(min, max) {
+    min = Math.ceil(50);
+    max = Math.floor(250);
+    return Math.floor(Math.random() * (250 - 50)) + 50;
+  };
 };
 
 // Now instantiate your objects.
