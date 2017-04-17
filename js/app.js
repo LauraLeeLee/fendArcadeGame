@@ -11,7 +11,6 @@ var Enemy = function(x,y) {
     this.width = 52;
     this.height = 50;
     this.speed = Math.floor(Math.random() * 200);
-    allEnemies.push(this);
 };
 
 //sets collision with player
@@ -141,14 +140,13 @@ Player.prototype.win = function() {
 
 //creates Gem class
 var Gem = function () {
+  //chooses random sprite image
   var gemSprite = ["images/gem-orange.png","images/gem-blue.png","images/star.png"];
-  var randomGem = this.sprite[Math.floor(Math.random() * gemSprite.length)];
-  this.sprite = randomGem;
+  this.sprite = gemSprite[Math.floor(Math.random() * gemSprite.length)];
   this.x =  Math.floor(Math.random() * 400) + 1;
   this.y = Math.floor(Math.random() * 280) + 50;
   this.width = 20;
   this.height = 30;
-  allGems.push(this);
 };
 
 //draws gem to board
@@ -157,7 +155,7 @@ Gem.prototype.render = function() {
 };
 
 Gem.prototype.update = function() {
-  //chooses random sprite image
+
 };
 
 // Now instantiate your objects.
