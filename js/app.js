@@ -70,6 +70,15 @@ Player.prototype.update = function(){
     this.y = 435;
   }
 
+  //check for gem gather
+  /*if(this.x < gem.x + gem.width &&
+     this.x + this.width > gem.x &&
+     this.y < gem.y +gem.height &&
+     this.height + this.y > gem.y){
+       gem.checkGemGather();
+    }
+*/
+
   //sets value of score and lives
   var score = "Score: %data%";
   //update %data% with current values
@@ -150,6 +159,11 @@ Gem.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite),this.x,this.y);
 };
 
+Gem.prototype.reset = function(){
+    this.y = Math.floor(Math.random()*  200); // resets gem to different points on canvas
+    this.x = Math.floor(Math.random() * 300);
+};
+
 Gem.prototype.checkGemGather = function() {
   if(player.x < this.x + this.width &&
      player.x + player.width > this.x &&
@@ -157,8 +171,7 @@ Gem.prototype.checkGemGather = function() {
      player.height + player.y > this.y){
        console.log("gem collected");
        player.score += 50;
-       this.x = 1000;
-       this.y = 1000;
+       gem.rest();
      }
 };
 
