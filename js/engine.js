@@ -97,7 +97,7 @@ var Engine = (function(global) {
         player.update();
         player.win();
         allGems.forEach(function(gem){
-          gem.update;
+          gem.update();
         });
     }
 
@@ -186,7 +186,8 @@ var Engine = (function(global) {
         'images/char-pink-girl.png',
         'images/gem-orange.png',
         'images/gem-blue.png',
-        'images/star.png'
+        'images/star.png',
+        'images/heart.png'
     ]);
     Resources.onReady(init);
 

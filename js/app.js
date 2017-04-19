@@ -70,15 +70,6 @@ Player.prototype.update = function(){
     this.y = 435;
   }
 
-  //check for gem gather
-  /*if(this.x < gem.x + gem.width &&
-     this.x + this.width > gem.x &&
-     this.y < gem.y +gem.height &&
-     this.height + this.y > gem.y){
-       gem.checkGemGather();
-    }
-*/
-
   //sets value of score and lives
   var score = "Score: %data%";
   //update %data% with current values
@@ -121,8 +112,8 @@ Player.prototype.handleInput = function(key) {
 Player.prototype.render = function() {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     this.win();
-    //win game when reach 200 points
-    if( this.score >= 200) {
+    //win game when reach 400 points
+    if( this.score >= 400) {
       ctx.font = "bold 40px sans-serif";
       ctx.fillStyle = "#fef65b";
       ctx.fillText("You beat the bugs!!",65,100);
@@ -146,10 +137,10 @@ Player.prototype.win = function() {
 //creates Gem class
 var Gem = function () {
   //chooses random sprite image
-  var gemSprite = ["images/gem-orange.png","images/gem-blue.png","images/star.png"];
+  var gemSprite = ["images/gem-orange.png","images/gem-blue.png","images/star.png","images/heart.png"];
   this.sprite = gemSprite[Math.floor(Math.random() * gemSprite.length)];
-  this.x =  Math.floor(Math.random() * 400) + 1;
-  this.y = Math.floor(Math.random() * 280) + 50;
+  this.x =  Math.floor(Math.random() * (429-1+1)) + 1;
+  this.y = Math.floor(Math.random() * (350-70+1)) + 70;
   this.width = 20;
   this.height = 30;
 };
@@ -159,9 +150,10 @@ Gem.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite),this.x,this.y);
 };
 
+// resets gem to different postion after being gathered
 Gem.prototype.reset = function(){
-    this.y = Math.floor(Math.random()*  200); // resets gem to different points on canvas
-    this.x = Math.floor(Math.random() * 300);
+  this.x = Math.floor(Math.random() * (429-1+1)) + 1;
+  this.y = Math.floor(Math.random() * (350-50+1)) + 50;
 };
 
 Gem.prototype.checkGemGather = function() {
@@ -170,8 +162,16 @@ Gem.prototype.checkGemGather = function() {
      player.y < this.y + this.height &&
      player.height + player.y > this.y){
        console.log("gem collected");
-       player.score += 50;
-       gem.rest();
+       if(this.sprite === "images/gem-orange.png") {
+         player.score += 20;
+       } else if(this.sprite === "images/gem-blue.png"){
+         player.score +=30;
+       } else if (this.spirte ==="images/star.png"){
+         player.score += 40;
+       } else if (this.sprite ==="images/heart.png"){
+         player.score +=50;
+       }
+       this.reset();
      }
 };
 
@@ -192,6 +192,7 @@ var player = new Player();
 
 //Place all gems created in an array called allGems
 var allGems = [];
+allGems.push(new Gem());
 allGems.push(new Gem());
 allGems.push(new Gem());
 
