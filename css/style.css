@@ -12,6 +12,16 @@ header {
 h2 {
   font: 30px arial san-serif;
   color: #ffff00;
-  margin-left: 40px;
+  margin-left: 30px;
   display: inline;
+}
+
+p {
+  font: 30px arial san-serif;
+  color: #ffff00;
+}
+
+span {
+  font: 20px arial san-serif;
+  color: #0000cc;
 }
