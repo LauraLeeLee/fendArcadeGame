@@ -72,17 +72,13 @@ Player.prototype.update = function(){
 
   //sets value of score and lives
   var score = "Score: %data%";
-
   //update %data% with current values
-  //var updateScore =score.replace("%data%", this.score);
   var scoreElem = document.getElementById("score");
   scoreElem.textContent = score.replace("%data%", this.score);
-
   var lives = "Lives: %data%";
   var updateLives = lives.replace("%data%", this.lives);
   var livesElem = document.getElementById("lives");
   livesElem.textContent = lives.replace("%data%", this.lives);
-
 
   //score 10 points for making it to water
   if(this.win()===true){
@@ -154,8 +150,20 @@ Gem.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite),this.x,this.y);
 };
 
-Gem.prototype.update = function() {
+Gem.prototype.checkGemGather = function() {
+  if(player.x < this.x + this.width &&
+     player.x + player.width > this.x &&
+     player.y < this.y + this.height &&
+     player.height + player.y > this.y){
+       console.log("gem collected");
+       player.score += 50;
+       this.x = 1000;
+       this.y = 1000;
+     }
+};
 
+Gem.prototype.update = function() {
+  this.checkGemGather();
 };
 
 // Now instantiate your objects.
