@@ -111,10 +111,6 @@ Player.prototype.update = function() {
 
 };
 
-Player.prototype.gameOver = function() {
-
-};
-
 Player.prototype.reset = function() {
   this.score = 0;
   this.lives = 3;
