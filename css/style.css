@@ -28,7 +28,8 @@ h2 {
   background-color: #0000cc;
 }
 
-#winModal .modal-header, #winModal .modal-footer {
+#winModal .modal-header,
+#winModal .modal-footer {
   background-color: #ffff00;
 }
 
@@ -46,7 +47,8 @@ h2 {
   background-position: center;
   background-color: #ffff00;
 }
-#loseModal .modal-header, #loseModal .modal-footer {
+#loseModal .modal-header,
+#loseModal .modal-footer {
   background-color: #0000cc;
 }
 

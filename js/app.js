@@ -1,11 +1,11 @@
-// Enemies our player must avoid
-var Enemy = function(x,y) {
+  // Enemies our player must avoid
+var Enemy = function(x, y) {
   // Variables applied to each of our instances go here,
   // we've provided one for you to get started
 
   // The image/sprite for our enemies, this uses
   // a helper we've provided to easily load images
-  this.sprite = 'images/enemy-bug.png';
+  this.sprite = "images/enemy-bug.png";
   this.x = x;
   this.y = y;
   this.width = 52;
@@ -14,7 +14,7 @@ var Enemy = function(x,y) {
 };
 
 //sets collision with player
-Enemy.prototype.checkCollisions = function(){
+Enemy.prototype.checkCollisions = function() {
   if(player.x < this.x + this.width &&
     player.x + player.width > this.x &&
     player.y < this.y + this.height &&
@@ -22,7 +22,7 @@ Enemy.prototype.checkCollisions = function(){
       console.log("collision!!");
       player.x = 215;
       player.y = 400;
-      player.lives-=1;
+      player.lives -=1;
   }
 };
 
@@ -52,16 +52,17 @@ Enemy.prototype.render = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 var Player = function() {
-  this.sprite = 'images/char-princess-girl.png';
+  this.sprite = "images/char-princess-girl.png";
   this.x = 215;
   this.y = 400;
   this.width = 52;
   this.height = 50;
   this.score = 0;
   this.lives = 3;
+  this.gameOver = false;
 };
 
-Player.prototype.update = function(){
+Player.prototype.update = function() {
   //sets limits for player to remain on screen
   if(this.x < 0){
     this.x = 0;
@@ -83,34 +84,43 @@ Player.prototype.update = function(){
   var livesElem = document.getElementById("lives");
   livesElem.textContent = lives.replace("%data%", this.lives);
 
+  //win game when reach 400 points
+  //if using ctx code, the win if statement would go in player.render to draw the win messae to the board
+  if( this.score >= 80 && !this.gameOver) {
+    //ctx.font = "bold 40px sans-serif";
+    //ctx.fillStyle = "#fef65b";
+    //ctx.fillText("You Beat the Bugs!",10,50);
+     $("#winModal").modal("show");
+     console.log("you win!");
+     this.gameOver = true;
+   }
+
+  if (player.lives <= 0 && !this.gameOver) {
+  //alert("The bugs beat you! Click OK to play again");
+    $("#loseModal").modal("show");
+    console.log("youlose!");
+    this.gameOver = true;
+    // this.lives = 3;
+    // this.score = 0;
+  }
   //score 10 points for making it to water
   if(this.win()===true){
     this.score += 10;
     console.log("10 points!");
   };
-  //win game when reach 400 points
-  //if using ctx code, the win if statement would go in player.render to draw the win messae to the board
-  if( this.score >= 80) {
-    //ctx.font = "bold 40px sans-serif";
-    //ctx.fillStyle = "#fef65b";
-    //ctx.fillText("You Beat the Bugs!",10,50);
-    $("#winModal").modal("show");
-    console.log("you win!");
-  }
-  if (player.lives <= 0) {
-  //alert("The bugs beat you! Click OK to play again");
-    $("#loseModal").modal("show");
-    console.log("youlose!");
-    // this.lives = 3;
-    // this.score = 0;
-  }
+
 };
 
-Player.prototype.reset = function () {
+Player.prototype.gameOver = function() {
+
+};
+
+Player.prototype.reset = function() {
   this.score = 0;
   this.lives = 3;
   this.x = 215;
   this.y = 400;
+  this.gameOver = false;
 };
 
 //sets the direction and distance for player movement
@@ -202,7 +212,7 @@ function gameReset() {
   });
   allEnemies.forEach(function(enemy) {
       enemy.reset();
-  })
+  });
   $("#loseModal").modal("hide");
   $("winModal").modal("hide");
 }
@@ -210,6 +220,11 @@ function gameReset() {
 //event listener to reset the game when user clicks yes to play again
 $(document).on("click", "#game-reset", function(){
   gameReset();
+});
+
+//event listener to provide end modal for quit game
+$(document).on("click", "#end-game", function(){
+  $("endModal").modal("show");
 });
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
@@ -230,12 +245,12 @@ allGems.push(new Gem());
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
-document.addEventListener('keyup', function(e) {
+document.addEventListener("keyup", function(e) {
     var allowedKeys = {
-        37: 'left',
-        38: 'up',
-        39: 'right',
-        40: 'down'
+        37: "left",
+        38: "up",
+        39: "right",
+        40: "down"
     };
   player.handleInput(allowedKeys[e.keyCode]);
 });

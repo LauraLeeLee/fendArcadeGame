@@ -36,33 +36,52 @@
           </div>
          <div class="modal-footer">
            <button type="button" id = "game-reset" class="btn btn-default" data-dismiss="modal">Yes</button>
-           <button type="button" class="btn btn-default" data-dismiss="modal">Quit</button>
+           <button type="button" id = "end-game" class="btn btn-default" data-dismiss="modal">Quit</button>
          </div>
        </div>
      </div>
    </div>
  </div>
 
- <!-- Lose Modal -->
-<div class="container">
- <div class="modal fade" id="loseModal" role="dialog">
-   <div class="modal-dialog">
-     <!-- Modal content-->
-     <div class="modal-content">
-       <div class="modal-header">
-       </div>
-       <div class="modal-body">
-         <p>Oh no! The bugs beat you!</p>
-         <p> Do you want to play again?</p>
-       </div>
-      <div class="modal-footer">
-        <button type="button" id = "game-reset" class="btn btn-default" data-dismiss= "modal">Yes</button>
-        <button type="button" class="btn btn-default" data-dismiss= "modal">Quit</button>
+   <!-- Lose Modal -->
+  <div class="container">
+   <div class="modal fade" id="loseModal" role="dialog">
+     <div class="modal-dialog">
+       <!-- Modal content-->
+       <div class="modal-content">
+         <div class="modal-header">
+         </div>
+         <div class="modal-body">
+           <p>Oh no! The bugs beat you!</p>
+           <p> Do you want to play again?</p>
+         </div>
+         <div class="modal-footer">
+           <button type="button" id = "game-reset" class="btn btn-default" data-dismiss= "modal">Yes</button>
+           <button type="button" id = "end-game" class="btn btn-default" data-dismiss= "modal">Quit</button>
+         </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
-</div>
 
+  <!-- End gameReset Modal -->
+  <div class="container">
+    <div class="modal fade" id="endModal" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+          </div>
+          <div class="modal-body">
+            <p>Thanks for playing!</p>
+          </div>
+          <div class="modal-footer">
+           <button type="button" id = "game-reset" class="btn btn-default" data-dismiss= "modal">Yes</button>
+           <button type="button" id = "end-game" class="btn btn-default" data-dismiss= "modal">Quit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
