@@ -120,7 +120,8 @@ Player.prototype.render = function() {
       console.log("you win!");
     };
     if (player.lives <= 0) {
-    alert("The bugs beat you! Click OK to play again");
+    //alert("The bugs beat you! Click OK to play again");
+    $("loseModal").modal("show");
     this.lives = 3;
   }
 };
