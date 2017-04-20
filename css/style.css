@@ -16,21 +16,34 @@ h2 {
   display: inline;
 }
 
+.modal {
+  margin-top: 200px;
+}
+
 #winModal .modal-content{
+  background-image: url("../images/star.png");
+  background-repeat: repeat-x;
+  background-attachment: fixed;
+  background-position: center;
   background-color: #0000cc;
 }
 
-#winModal.modal-header, #winModal.modal-footer {
-  color: #ffff00;
+#winModal .modal-header, #winModal .modal-footer {
+  background-color: #ffff00;
 }
 
-
 #winModal p {
-  font: 30px arial san-serif;
+  margin-top: 15px;
+  font: 700 40px 'Mirza', cursive;
+  line-height: 185%;
   color: #ffff00;
 }
 
 #loseModal .modal-content{
+  background-image: url("../images/enemy-bug.png");
+  background-repeat: repeat-x;
+  background-attachment: fixed;
+  background-position: center;
   background-color: #ffff00;
 }
 #loseModal .modal-header, #loseModal .modal-footer {
@@ -38,15 +51,17 @@ h2 {
 }
 
 #loseModal p {
-  font: 30px arial san-serif;
+  font: 700 40px 'Mirza', cursive;
   color: #0000cc;
+  line-height: 275%;
 }
+
 .modal-footer {
     text-align: center;
 }
 
 .btn {
-  font:  bold 20px arial san-serif;
+  font:  400 30px 'Mirza', cursive;
   width: 100px;
   color: #006600;
 }

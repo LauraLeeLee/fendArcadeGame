@@ -1,48 +1,51 @@
 // Enemies our player must avoid
 var Enemy = function(x,y) {
-    // Variables applied to each of our instances go here,
-    // we've provided one for you to get started
+  // Variables applied to each of our instances go here,
+  // we've provided one for you to get started
 
-    // The image/sprite for our enemies, this uses
-    // a helper we've provided to easily load images
-    this.sprite = 'images/enemy-bug.png';
-    this.x = x;
-    this.y = y;
-    this.width = 52;
-    this.height = 50;
-    this.speed = Math.floor(Math.random() * 200);
+  // The image/sprite for our enemies, this uses
+  // a helper we've provided to easily load images
+  this.sprite = 'images/enemy-bug.png';
+  this.x = x;
+  this.y = y;
+  this.width = 52;
+  this.height = 50;
+  this.speed = Math.floor(Math.random() * 200);
 };
 
 //sets collision with player
 Enemy.prototype.checkCollisions = function(){
-     if(player.x < this.x + this.width &&
-        player.x + player.width > this.x &&
-        player.y < this.y + this.height &&
-        player.height + player.y > this.y){
-          console.log("collision!!");
-          player.x = 215;
-          player.y = 400;
-          player.lives-=1;
-        }
+  if(player.x < this.x + this.width &&
+    player.x + player.width > this.x &&
+    player.y < this.y + this.height &&
+    player.height + player.y > this.y){
+      console.log("collision!!");
+      player.x = 215;
+      player.y = 400;
+      player.lives-=1;
+  }
 };
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
-    // You should multiply any movement by the dt parameter
-    // which will ensure the game runs at the same speed for
-    // all computers.
-    this.x += this.speed * dt;
-    if(this.x > 500) {
-     this.x = -150;
-    }
-    this.checkCollisions();
+  // You should multiply any movement by the dt parameter
+  // which will ensure the game runs at the same speed for
+  // all computers.
+  this.x += this.speed * dt;
+  if(this.x > 500) {
+  this.x = -150;
+  }
+  this.checkCollisions();
+};
 
+Enemy.prototype.reset = function() {
+  this.speed = Math.floor(Math.random() * 200);
 };
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+  ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
 // Now write your own player class
@@ -93,17 +96,21 @@ Player.prototype.update = function(){
     //ctx.fillText("You Beat the Bugs!",10,50);
     $("#winModal").modal("show");
     console.log("you win!");
-    this.score = 0;
-    this.lives = 3;
-    this.x = 215;
-    this.y = 400;
   }
   if (player.lives <= 0) {
   //alert("The bugs beat you! Click OK to play again");
-  $("#loseModal").modal("show");
-  this.lives = 3;
-  this.score = 0;
+    $("#loseModal").modal("show");
+    console.log("youlose!");
+    // this.lives = 3;
+    // this.score = 0;
   }
+};
+
+Player.prototype.reset = function () {
+  this.score = 0;
+  this.lives = 3;
+  this.x = 215;
+  this.y = 400;
 };
 
 //sets the direction and distance for player movement
@@ -131,7 +138,6 @@ Player.prototype.handleInput = function(key) {
 Player.prototype.render = function() {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     this.win();
-
 };
 
 //message to appear when player crosses to water
@@ -188,6 +194,23 @@ Gem.prototype.update = function() {
   this.checkGemGather();
 };
 
+//function to reset game for entities
+function gameReset() {
+  player.reset();
+  allGems.forEach(function(gem){
+    gem.reset();
+  });
+  allEnemies.forEach(function(enemy) {
+      enemy.reset();
+  })
+  $("#loseModal").modal("hide");
+  $("winModal").modal("hide");
+}
+
+//event listener to reset the game when user clicks yes to play again
+$(document).on("click", "#game-reset", function(){
+  gameReset();
+});
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 var allEnemies = [];
