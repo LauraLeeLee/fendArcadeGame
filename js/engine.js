@@ -169,10 +169,7 @@ var Engine = (function(global) {
     function reset() {
         // noop
          $("#loseModal").modal("hide");
-         //player.lives = 3;
-         //player.score = 0;
-         renderEntities();
-    }
+      }
 
     /* Go ahead and load all of the images we know we're going to need to
      * draw our game level. Then set init as the callback method, so that when

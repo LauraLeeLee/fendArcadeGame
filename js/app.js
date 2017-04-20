@@ -94,6 +94,9 @@ Player.prototype.update = function(){
     $("#winModal").modal("show");
     console.log("you win!");
     this.score = 0;
+    this.lives = 3;
+    this.x = 215;
+    this.y = 400;
   }
   if (player.lives <= 0) {
   //alert("The bugs beat you! Click OK to play again");

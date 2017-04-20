@@ -46,6 +46,7 @@ h2 {
 }
 
 .btn {
+  font:  bold 20px arial san-serif;
   width: 100px;
   color: #006600;
 }
