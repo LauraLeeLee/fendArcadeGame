@@ -85,6 +85,22 @@ Player.prototype.update = function(){
     this.score += 10;
     console.log("10 points!");
   };
+  //win game when reach 400 points
+  //if using ctx code, the win if statement would go in player.render to draw the win messae to the board
+  if( this.score >= 80) {
+    //ctx.font = "bold 40px sans-serif";
+    //ctx.fillStyle = "#fef65b";
+    //ctx.fillText("You Beat the Bugs!",10,50);
+    $("#winModal").modal("show");
+    console.log("you win!");
+    this.score = 0;
+  }
+  if (player.lives <= 0) {
+  //alert("The bugs beat you! Click OK to play again");
+  $("#loseModal").modal("show");
+  this.lives = 3;
+  this.score = 0;
+  }
 };
 
 //sets the direction and distance for player movement
@@ -112,18 +128,7 @@ Player.prototype.handleInput = function(key) {
 Player.prototype.render = function() {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     this.win();
-    //win game when reach 400 points
-    if( this.score >= 400) {
-      ctx.font = "bold 40px sans-serif";
-      ctx.fillStyle = "#fef65b";
-      ctx.fillText("You beat the bugs!!",65,100);
-      console.log("you win!");
-    };
-    if (player.lives <= 0) {
-    //alert("The bugs beat you! Click OK to play again");
-    $("loseModal").modal("show");
-    this.lives = 3;
-  }
+
 };
 
 //message to appear when player crosses to water
@@ -167,7 +172,7 @@ Gem.prototype.checkGemGather = function() {
          player.score += 20;
        } else if(this.sprite === "images/gem-blue.png"){
          player.score +=30;
-       } else if (this.spirte ==="images/star.png"){
+       } else if (this.sprite ==="images/star.png"){
          player.score += 40;
        } else if (this.sprite ==="images/heart.png"){
          player.score +=50;

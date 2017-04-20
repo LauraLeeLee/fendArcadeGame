@@ -16,12 +16,36 @@ h2 {
   display: inline;
 }
 
-p {
+#winModal .modal-content{
+  background-color: #0000cc;
+}
+
+#winModal.modal-header, #winModal.modal-footer {
+  color: #ffff00;
+}
+
+
+#winModal p {
   font: 30px arial san-serif;
   color: #ffff00;
 }
 
-span {
-  font: 20px arial san-serif;
+#loseModal .modal-content{
+  background-color: #ffff00;
+}
+#loseModal .modal-header, #loseModal .modal-footer {
+  background-color: #0000cc;
+}
+
+#loseModal p {
+  font: 30px arial san-serif;
   color: #0000cc;
+}
+.modal-footer {
+    text-align: center;
+}
+
+.btn {
+  width: 100px;
+  color: #006600;
 }
