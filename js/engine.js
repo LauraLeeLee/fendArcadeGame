@@ -21,13 +21,26 @@ var Engine = (function(global) {
 */
 var doc = global.document,
 win = global.window,
-canvas = doc.createElement('canvas'),
-ctx = canvas.getContext('2d'),
+canvas = doc.createElement("canvas"),
+ctx = canvas.getContext("2d"),
 lastTime;
 
 canvas.width = 505;
 canvas.height = 606;
 doc.body.appendChild(canvas);
+
+//sprite selection
+var characters = document.getElementsByClassName("characters");
+characters = [].slice.call(characters);
+  characters.forEach(function(char) {
+    char.addEventListener("click", function() {
+      if(char) {
+        player.sprite = char.getAttribute("src");
+        char.style.background = "green";
+      }
+  });
+});
+
 
 /* This function serves as the kickoff point for the game loop itself
 * and handles properly calling the update and render methods.

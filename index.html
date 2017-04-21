@@ -10,8 +10,20 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
+
+  <!-- //sprites to select from -->
+  <div class= container>
+    <div id="sprites">
+      <h2 id="chars-title">Choose a Character</h2>
+      <img src="images/char-boy.png" alt="boy character" class="chars">
+      <img src="images/char-cat-girl.png" alt="cat girl character" class="chars">
+      <img src="images/char-horn-girl.png" alt="horn girl character" class="chars">
+      <img src="images/char-pink-girl.png" alt="pink girl character" class="chars">
+      <img src="images/char-princess-girl.png" alt="princess girl character" class="chars">
+    </div>
+  </div>  
   <header>
-    <div>
+    <div id="score-board">
       <h2 id="score">Score: 0</h2>
       <h2 id="lives">Lives: 3</h2>
     </div>
@@ -19,7 +31,6 @@
   <script src="js/resources.js"></script>
   <script src="js/app.js"></script>
   <script src="js/engine.js"></script>
-
 
     <!-- Win Modal -->
   <div class="container">
@@ -76,8 +87,6 @@
             <p>Thanks for playing!</p>
           </div>
           <div class="modal-footer">
-           <button type="button" id = "game-reset" class="btn btn-default" data-dismiss= "modal">Yes</button>
-           <button type="button" id = "end-game" class="btn btn-default" data-dismiss= "modal">Quit</button>
           </div>
         </div>
       </div>

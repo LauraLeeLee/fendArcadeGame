@@ -39,6 +39,7 @@ Enemy.prototype.update = function(dt) {
   this.checkCollisions();
 };
 
+//reset property for enemy to reset speed when game is reset
 Enemy.prototype.reset = function() {
   this.speed = Math.floor(Math.random() * 200);
 };
@@ -85,8 +86,9 @@ Player.prototype.update = function() {
   livesElem.textContent = lives.replace("%data%", this.lives);
 
   //win game when reach 400 points
+  //conditional for win modal to show
   //if using ctx code, the win if statement would go in player.render to draw the win messae to the board
-  if( this.score >= 80 && !this.gameOver) {
+  if( this.score >= 400 && !this.gameOver) {
     //ctx.font = "bold 40px sans-serif";
     //ctx.fillStyle = "#fef65b";
     //ctx.fillText("You Beat the Bugs!",10,50);
@@ -95,22 +97,22 @@ Player.prototype.update = function() {
      this.gameOver = true;
    }
 
+  //conditional for lose modal to show
   if (player.lives <= 0 && !this.gameOver) {
   //alert("The bugs beat you! Click OK to play again");
     $("#loseModal").modal("show");
     console.log("youlose!");
     this.gameOver = true;
-    // this.lives = 3;
-    // this.score = 0;
   }
+
   //score 10 points for making it to water
   if(this.win()===true){
     this.score += 10;
     console.log("10 points!");
   };
-
 };
 
+//reset property for player when resetting game
 Player.prototype.reset = function() {
   this.score = 0;
   this.lives = 3;
@@ -163,7 +165,7 @@ var Gem = function () {
   this.x =  Math.floor(Math.random() * (429-1+1)) + 1;
   this.y = Math.floor(Math.random() * (350-70+1)) + 70;
   this.width = 20;
-  this.height = 30;
+  this.height = 25;
 };
 
 //draws gem to board
@@ -220,7 +222,7 @@ $(document).on("click", "#game-reset", function(){
 
 //event listener to provide end modal for quit game
 $(document).on("click", "#end-game", function(){
-  $("endModal").modal("show");
+  $("#endModal").modal("show");
 });
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies

@@ -9,11 +9,33 @@ header {
   margin-top: 50px;
   margin-bottom: -30px;
 }
-h2 {
-  font: 30px arial san-serif;
+
+#score-board {
+  width: 40%;
+  margin: 0 auto;
+  padding: 20px 10px 10px 10px;
+  border-radius: 25px;
+  background-color: #000;
+}
+
+#score-board h2 {
+  font: 700 30px 'Mirza', cursive;
   color: #ffff00;
-  margin-left: 30px;
+  margin-right: 25px;
   display: inline;
+}
+
+h2:first-child {
+  margin-left: 27px;
+}
+
+#sprites h2 {
+  font: 700 40px 'Mirza', cursive;
+  color: #33ccff;
+}
+
+#sprites img {
+  margin: 0;
 }
 
 .modal {
@@ -66,4 +88,13 @@ h2 {
   font:  400 30px 'Mirza', cursive;
   width: 100px;
   color: #006600;
+}
+
+#endModal .modal-content{
+  background-color: #000;
+}
+
+#endModal p {
+  font: 700 40px 'Mirza', cursive;
+  color: #33ccff;
 }
