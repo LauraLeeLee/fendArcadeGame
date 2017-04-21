@@ -40,6 +40,7 @@ h2:first-child {
 
 #sprites img {
   margin: 0;
+  cursor: pointer;
 }
 
 .modal {
