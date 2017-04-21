@@ -25,7 +25,7 @@ canvas = doc.createElement("canvas"),
 ctx = canvas.getContext("2d"),
 lastTime;
 
-canvas.width = 505;
+canvas.width = 707;
 canvas.height = 606;
 doc.body.appendChild(canvas);
 
@@ -111,6 +111,9 @@ function updateEntities(dt) {
   allGems.forEach(function(gem){
     gem.update();
   });
+  allRocks.forEach(function(rock){
+    rock.update();
+  });
 }
 
 /* This function initially draws the "game level", it will then call
@@ -132,7 +135,7 @@ function render() {
     'images/grass-block.png'    // Row 2 of 2 of grass
   ],
   numRows = 6,
-  numCols = 5,
+  numCols = 7,
   row, col;
 
 /* Loop through the number of rows and columns we've defined above
@@ -169,6 +172,9 @@ function render() {
     allGems.forEach(function(gem){
       gem.render();
     });
+    allRocks.forEach(function(rock){
+      rock.render();
+    });
   }
 
 /* This function does nothing but it could have been a good place to
@@ -197,7 +203,8 @@ function render() {
     'images/gem-orange.png',
     'images/gem-blue.png',
     'images/star.png',
-    'images/heart.png'
+    'images/heart.png',
+    'images/rock.png'
   ]);
   Resources.onReady(init);
 

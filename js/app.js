@@ -20,9 +20,9 @@ Enemy.prototype.checkCollisions = function() {
     player.y < this.y + this.height &&
     player.height + player.y > this.y){
       console.log("collision!!");
-      player.x = 215;
+      player.x = 305;
       player.y = 400;
-      player.lives -=1;
+      player.lives -= 1;
   }
 };
 
@@ -33,7 +33,7 @@ Enemy.prototype.update = function(dt) {
   // which will ensure the game runs at the same speed for
   // all computers.
   this.x += this.speed * dt;
-  if(this.x > 500) {
+  if(this.x > 700) {
   this.x = -150;
   }
   this.checkCollisions();
@@ -54,7 +54,7 @@ Enemy.prototype.render = function() {
 // a handleInput() method.
 var Player = function() {
   this.sprite = "images/char-princess-girl.png";
-  this.x = 215;
+  this.x = 305;
   this.y = 400;
   this.width = 52;
   this.height = 50;
@@ -67,8 +67,8 @@ Player.prototype.update = function() {
   //sets limits for player to remain on screen
   if(this.x < 0){
     this.x = 0;
-  } else if (this.x > 420){
-    this.x = 420;
+  } else if (this.x > 620){
+    this.x = 620;
   } else if (this.y < 0){
     this.y = 0;
   }  else if (this.y > 435){
@@ -81,14 +81,14 @@ Player.prototype.update = function() {
   var scoreElem = document.getElementById("score");
   scoreElem.textContent = score.replace("%data%", this.score);
   var lives = "Lives: %data%";
-  var updateLives = lives.replace("%data%", this.lives);
+  //var updateLives = lives.replace("%data%", this.lives);
   var livesElem = document.getElementById("lives");
   livesElem.textContent = lives.replace("%data%", this.lives);
 
   //win game when reach 400 points
   //conditional for win modal to show
   //if using ctx code, the win if statement would go in player.render to draw the win messae to the board
-  if( this.score >= 10 && !this.gameOver) {
+  if( this.score >= 400 && !this.gameOver) {
     //ctx.font = "bold 40px sans-serif";
     //ctx.fillStyle = "#fef65b";
     //ctx.fillText("You Beat the Bugs!",10,50);
@@ -109,14 +109,14 @@ Player.prototype.update = function() {
   if(this.win()===true){
     this.score += 10;
     console.log("10 points!");
-  };
+  }
 };
 
 //reset property for player when resetting game
 Player.prototype.reset = function() {
   this.score = 0;
   this.lives = 3;
-  this.x = 215;
+  this.x = 305;
   this.y = 400;
   this.gameOver = false;
 };
@@ -151,10 +151,10 @@ Player.prototype.render = function() {
 //message to appear when player crosses to water
 Player.prototype.win = function() {
   if(this.y < 10) {
-    this.x = 215;
+    this.x = 305;
     this.y = 400;
     return true;
-  };
+  }
 };
 
 //creates Gem class
@@ -175,7 +175,7 @@ Gem.prototype.render = function() {
 
 // resets gem to different postion after being gathered
 Gem.prototype.reset = function(){
-  this.x = Math.floor(Math.random() * (429-1+1)) + 1;
+  this.x = Math.floor(Math.random() * (695-1+1)) + 1;
   this.y = Math.floor(Math.random() * (350-50+1)) + 50;
 };
 
@@ -200,6 +200,36 @@ Gem.prototype.checkGemGather = function() {
 
 Gem.prototype.update = function() {
   this.checkGemGather();
+};
+
+var Rock = function() {
+  this.sprite = "images/rock.png";
+  this.width = 80;
+  this.height = 80;
+  this.x =  Math.floor(Math.random() * (605-1+1)) + 1;
+  this.y = Math.floor(Math.random() * (350-70+1)) + 70;
+};
+
+Rock.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.sprite),this.x,this.y);
+};
+
+//sets collison with player
+Rock.prototype.checkCollisions = function() {
+  if(player.x < this.x + this.width &&
+    player.x + player.width > this.x &&
+    player.y < this.y + this.height &&
+    player.height + player.y > this.y){
+      console.log("Rock collision!!");
+      player.x = 305;
+      player.y = 400;
+      player.score -= 10;
+  }
+};
+
+//Update the rock, check collions
+Rock.prototype.update = function() {
+  this.checkCollisions();
 };
 
 //function to reset game for entities
@@ -230,7 +260,7 @@ $(document).on("click", "#end-game", function(){
   $("#endModal").modal("show");
 });
 
-//event listeners to select sprite
+//event listeners to select specific sprite
 $(document).on("click", "#boy", function(){
   player.sprite = "images/char-boy.png";
   $("#spriteModal").modal("hide");
@@ -263,6 +293,8 @@ allEnemies.push(new Enemy(10, 50));
 allEnemies.push(new Enemy(20, 150));
 allEnemies.push(new Enemy(50, 230));
 allEnemies.push(new Enemy(30, 300));
+allEnemies.push(new Enemy(40, 100));
+allEnemies.push(new Enemy(10, 250));
 
 // Place the player object in a variable called player
 var player = new Player();
@@ -272,6 +304,17 @@ var allGems = [];
 allGems.push(new Gem());
 allGems.push(new Gem());
 allGems.push(new Gem());
+allGems.push(new Gem());
+allGems.push(new Gem());
+
+
+//place all rocks created in an array called allRocks
+var allRocks = [];
+allRocks.push(new Rock());
+allRocks.push(new Rock());
+allRocks.push(new Rock());
+allRocks.push(new Rock());
+allRocks.push(new Rock());
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
