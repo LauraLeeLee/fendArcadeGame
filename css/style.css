@@ -11,7 +11,7 @@ header {
 }
 
 #score-board {
-  width: 40%;
+  width: 50%;
   margin: 0 auto;
   padding: 20px 10px 10px 10px;
   border-radius: 25px;
@@ -28,10 +28,14 @@ header {
 h2:first-child {
   margin-left: 27px;
 }
+#spriteModal .modal-content {
+  background-color: #ff5c33;
+  height: 300px;
+}
 
 #sprites h2 {
   font: 700 40px 'Mirza', cursive;
-  color: #33ccff;
+  color: #fff;
 }
 
 #sprites img {
@@ -88,6 +92,13 @@ h2:first-child {
   font:  400 30px 'Mirza', cursive;
   width: 100px;
   color: #006600;
+}
+
+#newSprite {
+  width: 200px;
+  font:  400 30px 'Mirza', cursive;
+  color: #006600;
+  word-wrap: break-word;
 }
 
 #endModal .modal-content{

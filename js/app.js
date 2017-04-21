@@ -220,10 +220,41 @@ $(document).on("click", "#game-reset", function(){
   gameReset();
 });
 
+//event listener to allow player to select new character after winning or losing game
+$(document).on("click", "#newSprite", function(){
+    $("#spriteModal").modal("show");
+});
 //event listener to provide end modal for quit game
 $(document).on("click", "#end-game", function(){
   $("#endModal").modal("show");
 });
+
+//event listeners to select sprite
+$(document).on("click", "#boy", function(){
+  player.sprite = "images/char-boy.png";
+  $("#spriteModal").modal("hide");
+});
+
+$(document).on("click", "#cat", function(){
+  player.sprite = "images/char-cat-girl.png";
+  $("#spriteModal").modal("hide");
+});
+
+$(document).on("click", "#horn", function(){
+  player.sprite = "images/char-horn-girl.png";
+  $("#spriteModal").modal("hide");
+});
+
+$(document).on("click", "#pink", function(){
+  player.sprite = "images/char-pink-girl.png";
+  $("#spriteModal").modal("hide");
+});
+
+$(document).on("click", "#princess", function(){
+  player.sprite = "images/char-princess-girl.png";
+  $("#spriteModal").modal("hide");
+});
+
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 var allEnemies = [];

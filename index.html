@@ -8,20 +8,13 @@
   <link href="https://fonts.googleapis.com/css?family=Mirza:500,700" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript">
+    $(window).on('load',function(){
+        $('#spriteModal').modal('show');
+    });
+  </script>
 </head>
 <body>
-
-  <!-- //sprites to select from -->
-  <div class= container>
-    <div id="sprites">
-      <h2 id="chars-title">Choose a Character</h2>
-      <img src="images/char-boy.png" alt="boy character" class="chars">
-      <img src="images/char-cat-girl.png" alt="cat girl character" class="chars">
-      <img src="images/char-horn-girl.png" alt="horn girl character" class="chars">
-      <img src="images/char-pink-girl.png" alt="pink girl character" class="chars">
-      <img src="images/char-princess-girl.png" alt="princess girl character" class="chars">
-    </div>
-  </div>  
   <header>
     <div id="score-board">
       <h2 id="score">Score: 0</h2>
@@ -31,6 +24,30 @@
   <script src="js/resources.js"></script>
   <script src="js/app.js"></script>
   <script src="js/engine.js"></script>
+
+  <!-- Sprite Modal -->
+<div class="container">
+  <div class="modal fade" id="spriteModal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+        </div>
+        <!-- //sprites to select from -->
+        <div id="sprites">
+          <h2 id="chars-title">Choose a Character</h2>
+          <img id="boy" src="images/char-boy.png" alt="boy character" class="chars">
+          <img id="cat" src="images/char-cat-girl.png" alt="cat girl character" class="chars">
+          <img id="horn" src="images/char-horn-girl.png" alt="horn girl character" class="chars">
+          <img id="pink" src="images/char-pink-girl.png" alt="pink girl character" class="chars">
+          <img id="princess" src="images/char-princess-girl.png" alt="princess girl character" class="chars">
+        </div>
+       <div class="modal-footer">
+       </div>
+     </div>
+   </div>
+ </div>
+</div>
 
     <!-- Win Modal -->
   <div class="container">
@@ -47,6 +64,7 @@
           </div>
          <div class="modal-footer">
            <button type="button" id = "game-reset" class="btn btn-default" data-dismiss="modal">Yes</button>
+           <button type="button" id = "newSprite" class="btn btn-default" data-dismiss="modal">New Character</button>
            <button type="button" id = "end-game" class="btn btn-default" data-dismiss="modal">Quit</button>
          </div>
        </div>
@@ -68,6 +86,7 @@
          </div>
          <div class="modal-footer">
            <button type="button" id = "game-reset" class="btn btn-default" data-dismiss= "modal">Yes</button>
+           <button type="button" id = "newSprite" class="btn btn-default" data-dismiss="modal">New Character</button>
            <button type="button" id = "end-game" class="btn btn-default" data-dismiss= "modal">Quit</button>
          </div>
         </div>
