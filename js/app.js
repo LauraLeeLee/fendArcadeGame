@@ -88,7 +88,7 @@ Player.prototype.update = function() {
   //win game when reach 400 points
   //conditional for win modal to show
   //if using ctx code, the win if statement would go in player.render to draw the win messae to the board
-  if( this.score >= 400 && !this.gameOver) {
+  if( this.score >= 10 && !this.gameOver) {
     //ctx.font = "bold 40px sans-serif";
     //ctx.fillStyle = "#fef65b";
     //ctx.fillText("You Beat the Bugs!",10,50);
@@ -223,6 +223,7 @@ $(document).on("click", "#game-reset", function(){
 //event listener to allow player to select new character after winning or losing game
 $(document).on("click", "#newSprite", function(){
     $("#spriteModal").modal("show");
+    gameReset();
 });
 //event listener to provide end modal for quit game
 $(document).on("click", "#end-game", function(){
