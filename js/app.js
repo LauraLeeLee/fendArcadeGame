@@ -207,7 +207,7 @@ var Rock = function() {
   this.width = 80;
   this.height = 80;
   this.x =  Math.floor(Math.random() * (605-1+1)) + 1;
-  this.y = Math.floor(Math.random() * (350-70+1)) + 70;
+  this.y = Math.floor(Math.random() * (300-70+1)) + 70;
 };
 
 Rock.prototype.render = function() {
