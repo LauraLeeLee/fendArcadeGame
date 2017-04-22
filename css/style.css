@@ -11,7 +11,7 @@ header {
 }
 
 #score-board {
-  width: 50%;
+  width: 320px;
   margin: 0 auto;
   padding: 20px 10px 10px 10px;
   border-radius: 25px;
@@ -63,7 +63,7 @@ h2:first-child {
 #winModal p {
   margin-top: 15px;
   font: 700 40px 'Mirza', cursive;
-  line-height: 185%;
+  line-height: 80px;
   color: #ffff00;
 }
 
@@ -82,7 +82,7 @@ h2:first-child {
 #loseModal p {
   font: 700 40px 'Mirza', cursive;
   color: #0000cc;
-  line-height: 275%;
+  line-height: 110px;
 }
 
 .modal-footer {
